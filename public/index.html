@@ -1,43 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI聊天机器人 - DeepSeek-Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <h1>AI聊天机器人</h1>
+            </div>
+            <div class="model-info">
+                <span class="model-tag">模型: DeepSeek-Chat</span>
+                <span class="status-indicator" id="statusIndicator">
+                    <i class="fas fa-circle"></i> 已连接
+                </span>
+            </div>
+        </header>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+        <main class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message ai-message">
+                    <div class="avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="content">
+                        <div class="text">
+                            你好！我是基于DeepSeek-Chat模型的AI助手。我可以回答你的问题、提供建议或进行对话。
+                        </div>
+                        <div class="meta">
+                            <span class="time">刚刚</span>
+                            <span class="model">deepseek-chat</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+            <div class="input-area">
+                <div class="input-container">
+                    <textarea
+                        id="messageInput"
+                        placeholder="输入你的消息... (按Enter发送，Shift+Enter换行)"
+                        rows="1"
+                        autofocus
+                    ></textarea>
+                    <button id="sendButton" class="send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="controls">
+                    <div class="control-group">
+                        <label class="switch">
+                            <input type="checkbox" id="apiToggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="control-label">模拟模式</span>
+                    </div>
+                    <button id="clearButton" class="clear-btn">
+                        <i class="fas fa-trash"></i> 清除对话
+                    </button>
+                </div>
+                <div class="info-note">
+                    <i class="fas fa-info-circle"></i>
+                    <span>当前使用模拟响应。要使用真实DeepSeek API，请配置API密钥并切换开关。</span>
+                </div>
+            </div>
+        </main>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+        <footer class="footer">
+            <p>AI聊天机器人演示 &copy; 2026 | 后端运行于 <span id="serverUrl">http://localhost:3000</span></p>
+            <p class="footer-links">
+                <a href="/api/health" target="_blank">健康检查</a>
+                <span class="separator">|</span>
+                <a href="#" id="toggleTheme">切换主题</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
